@@ -21,9 +21,9 @@ jobs:
       # You may pin to the exact commit or the version.
       # uses: usimd/pi-gen-action@bf082dedce15e8eb4b2f74b0817a808e00f9494d
       - uses: usimd/pi-gen-action@v1.9.0
-         with:
+          with:
         #   # Final image name.
-           image-name: testpi-lot
+            image-name: testpi-lot
         #   # The release name to use in `/etc/issue.txt`. The default should only be used for official Raspberry Pi builds.
         #   pi-gen-release: # optional, default is Raspberry Pi reference
         #   # Setting to `1` will prevent pi-gen from dropping the "capabilities" feature. Generating the root filesystem with capabilities enabled and running

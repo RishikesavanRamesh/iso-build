@@ -96,10 +96,10 @@ jobs:
       
           # The release name to use in `/etc/issue.txt`. The default should only be used for 
           # official Raspberry Pi builds.
-          pi-gen-release: Raspberry Pi reference
+          pi-gen-release: The testpi-lot reference
       
           # GitHub repository to fetch pi-gen from, must be a fork from RPi-Distro/pi-gen.
-          pi-gen-repository: RPi-Distro/pi-gen
+          pi-gen-repository: RishikesavanRamesh/pi-gen
       
           # Release version of pi-gen to use. This can both be a branch or tag name known in 
           # the pi-gen repository.

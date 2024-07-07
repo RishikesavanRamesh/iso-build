@@ -23,11 +23,11 @@ jobs:
         uses: usimd/pi-gen-action@v1.9.0
         with:
           image-name: testpi-lot
-          pi-gen-dir: /artifacts
+  
           
         # Upload artifacts as a build output
         # Adjust the pattern to match your artifact files
       - uses: actions/upload-artifact@v2
         with:
           name: pi-gen-artifacts
-          path: /artifacts/deploy/*.zip
+          path: /home/runner/work/iso-build/iso-build/pi-gen/deploy/*.zip

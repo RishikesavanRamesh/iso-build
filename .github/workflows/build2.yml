@@ -15,19 +15,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
       # Run your pi-gen-action or any build steps here
       - name: Run pi-gen action
         uses: usimd/pi-gen-action@v1.9.0
+        id: build
         with:
-          image-name: testpi-lot
-  
-          
-        # Upload artifacts as a build output
-        # Adjust the pattern to match your artifact files
-      - uses: actions/upload-artifact@v2
+          image-name: test
+
+      - uses: actions/upload-artifact@v3
         with:
-          name: pi-gen-artifacts
-          path: /home/runner/work/iso-build/iso-build/pi-gen/deploy/*.zip
+          name: pi-gen-image
+          path: ${{ steps.build.outputs.image-path }}

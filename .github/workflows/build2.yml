@@ -6,10 +6,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Define your environment variables under 'env'
-env:
-  DEPLOY_DIR: /artifacts
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -27,10 +23,11 @@ jobs:
         uses: usimd/pi-gen-action@v1.9.0
         with:
           image-name: testpi-lot
+          pi-gen-dir: /artifacts
           
         # Upload artifacts as a build output
         # Adjust the pattern to match your artifact files
       - uses: actions/upload-artifact@v2
         with:
           name: pi-gen-artifacts
-          path: artifacts/*.zip
+          path: /artifacts/deploy/*.zip

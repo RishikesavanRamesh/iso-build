@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: CI2
+name: CI3
 
 # Controls when the workflow will run
 on:
@@ -8,19 +8,37 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  pi-gen-nodejs:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Run your pi-gen-action or any build steps here
+      # Create a stage 'test-stage' instructing to add Nodesource repo and install nodejs as dependency
+      - run: |
+          mkdir -p test-stage/package-test &&
+          {
+          cat > test-stage/package-test/00-run-chroot.sh <<-EOF
+          #!/bin/bash
+          apt-get install -y curl
+          curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+          EOF
+          } &&
+          chmod +x test-stage/package-test/00-run-chroot.sh &&
+          echo "nodejs" > test-stage/package-test/01-packages &&
+          {
+          cat > test-stage/prerun.sh <<-EOF
+          #!/bin/bash -e
+          if [ ! -d "\${ROOTFS_DIR}" ]; then
+            copy_previous
+          fi
+          EOF
+          } &&
+          chmod +x test-stage/prerun.sh
+
       - name: Run pi-gen action
         uses: usimd/pi-gen-action@v1.9.0
         id: build
         with:
           image-name: test
+          stage-list: stage0 stage1 stage2 ./test-stage
 
       - uses: actions/upload-artifact@v4.3.4
         with:

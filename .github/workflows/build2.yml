@@ -16,7 +16,6 @@ jobs:
           mkdir -p custom-stage/package-docker &&
           {
           cat > custom-stage/package-docker/00-run-chroot.sh <<-EOF
-      
           #!/bin/bash
           # Add Docker's official GPG key:
           apt-get update
@@ -33,6 +32,7 @@ jobs:
           EOF
           } &&
           chmod +x custom-stage/package-docker/00-run-chroot.sh &&
+          {
           cat > custom-stage/package-docker/01-packages <<-EOF  
           docker-ce
           docker-ce-cli
@@ -40,6 +40,7 @@ jobs:
           docker-buildx-plugin
           docker-compose-plugin
           EOF
+          }
           &&
           {
           cat > custom-stage/prerun.sh <<-EOF

@@ -11,7 +11,7 @@ jobs:
   pi-gen-custom:
     runs-on: ubuntu-latest
     steps:
-      # Create a stage 'test-stage' instructing to add Nodesource repo and install nodejs as dependency
+      # Create a stage 'custom-stage' instructing to add Nodesource repo and install nodejs as dependency
       - run: |
           mkdir -p custom-stage/package-docker &&
           {
@@ -33,7 +33,7 @@ jobs:
           EOF
           } &&
           chmod +x custom-stage/package-docker/00-run-chroot.sh &&
-          cat > test-stage/package-test/01-packages <<-EOF  
+          cat > custom-stage/package-docker/01-packages <<-EOF  
           docker-ce
           docker-ce-cli
           containerd.io

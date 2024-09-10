@@ -55,8 +55,27 @@ jobs:
         uses: usimd/pi-gen-action@v1.9.0
         id: build
         with:
+          compression: zip
+          compression-level: 9
+          disable-first-boot-user-rename: 0
+          enable-noobs: false
+          enable-ssh: 1
+          export-last-stage-only: true
+          hostname: raspberrypi
+          keyboard-keymap: gb
+          keyboard-layout: English (UK)
+          locale: en_GB.UTF-8
+          password: 'pi'
+          pi-gen-version: arm64
+          release: bookworm
           image-name: custom
           stage-list: stage0 stage1 stage2 ./custom-stage
+          timezone: Asia/Kolkata
+          username: pi
+          verbose-output: false
+          wpa-country: 'IN'
+          wpa-essid: 'password'
+          wpa-password: 'password'
 
       - uses: actions/upload-artifact@v4.3.4
         with:
